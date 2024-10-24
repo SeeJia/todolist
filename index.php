@@ -36,10 +36,10 @@ $todos = json_decode($response, true);
 </head>
 <body>
 
-<a href="logout.php" class="btn btn-danger">Logout</a>
     <!-- 登录链接 -->
     <?php if (isset($_SESSION['user_id'])): ?>
         <a href="add_todo.php" class="btn btn-primary">Add Todo</a>
+        <a href="logout.php" class="btn btn-danger">Logout</a>
     <?php else: ?>
         <p><a href="user_login.php" class="btn btn-primary">Login</a></p>
     <?php endif; ?>
@@ -61,7 +61,6 @@ $todos = json_decode($response, true);
                 </div>
             <?php endforeach; ?>
         </div>
-
     </div>
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
