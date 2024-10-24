@@ -1,0 +1,15 @@
+{
+    "name": "admin/todolist",
+    "description": "a simple todolist web app",
+    "type": "project",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Admin\\Todolist\\": "src/"
+        }
+    },
+    "minimum-stability": "stable",
+    "require": {
+        "vlucas/phpdotenv": "^5.6"
+    }
+}

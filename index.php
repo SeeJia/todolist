@@ -1,9 +1,18 @@
 <?php
+
+require 'vendor/autoload.php';  // Autoload Composer dependencies
+
+use Dotenv\Dotenv;
+
+// Load the .env file
+$dotenv = Dotenv::createImmutable(__DIR__);
+$dotenv->load();
+
 session_start(); // 开始会话
 
 $apiUrl = 'https://ibbhnrhodkqgzndymooe.supabase.co/rest/v1/todolist?select=*'; 
-$apiKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImliYmhucmhvZGtxZ3puZHltb29lIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjkxNTA4ODQsImV4cCI6MjA0NDcyNjg4NH0.p-OQbxfMiHbegbW5-2YvflGtlCqU6NJ_NGJDyK6Ir_M';  
-$bearerToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImliYmhucmhvZGtxZ3puZHltb29lIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjkxNTA4ODQsImV4cCI6MjA0NDcyNjg4NH0.p-OQbxfMiHbegbW5-2YvflGtlCqU6NJ_NGJDyK6Ir_M';
+$apiKey = $_ENV['SUPABASE_API_KEY'];
+$bearerToken = $_ENV['SUPABASE_BEARER_TOKEN'];
 
 // 初始化 cURL
 $ch = curl_init();
@@ -36,11 +45,12 @@ $todos = json_decode($response, true);
 </head>
 <body>
 
+
     <!-- 登录链接 -->
     <?php if (isset($_SESSION['user_id'])): ?>
         <a href="add_todo.php" class="btn btn-primary">Add Todo</a>
         <a href="logout.php" class="btn btn-danger">Logout</a>
-    <?php else: ?>
+        <?php else: ?>
         <p><a href="user_login.php" class="btn btn-primary">Login</a></p>
     <?php endif; ?>
 
@@ -61,6 +71,7 @@ $todos = json_decode($response, true);
                 </div>
             <?php endforeach; ?>
         </div>
+
     </div>
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
