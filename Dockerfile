@@ -19,6 +19,8 @@ COPY composer.json composer.lock ./
 # 安装 Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
+RUN composer install --no-scripts --no-plugins
+
 # 复制项目文件
 COPY . .
 
