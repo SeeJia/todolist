@@ -8,8 +8,8 @@ COPY . /var/www/html/
 RUN chown -R www-data:www-data /var/www/html
 
 # 如果有 Composer 依赖，请取消注释下面的行
-COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
-RUN composer install
+# COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+# RUN composer install
 
 # 暴露容器的80端口
 EXPOSE 80
