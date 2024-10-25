@@ -10,6 +10,9 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-install gd \
     && docker-php-ext-install pdo pdo_mysql
 
+# Install PHP extensions
+RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
+
 # 设置工作目录
 WORKDIR /var/www/html/
 
@@ -17,9 +20,7 @@ WORKDIR /var/www/html/
 COPY composer.json composer.lock ./
 
 # 安装 Composer
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-
-RUN composer install --no-scripts --no-plugins
+COPY --from=composer:2.8.1 /usr/bin/composer /usr/local/bin/composer
 
 # 复制项目文件
 COPY . .
@@ -29,4 +30,6 @@ RUN chown -R www-data:www-data /var/www/html
 
 # 暴露容器的80端口
 EXPOSE 80
+
+RUN composer install --no-scripts --no-plugins
 
