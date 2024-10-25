@@ -16,7 +16,7 @@ RUN apt-get update && apt-get install -y \
 WORKDIR /var/www/html/
 
 # 复制 .env 文件
-COPY .env ./
+# COPY .env ./
 
 # 复制项目文件
 COPY . .
