@@ -2,10 +2,10 @@
 
 require '../vendor/autoload.php';  // Autoload Composer dependencies
 
-use Dotenv\Dotenv;
+// use Dotenv\Dotenv;
 
-$dotenv = Dotenv::createImmutable(__DIR__ . '/../');
-$dotenv->load();
+// $dotenv = Dotenv::createImmutable(__DIR__ . '/../');
+// $dotenv->load();
 
 $apiUrl = 'https://ibbhnrhodkqgzndymooe.supabase.co/rest/v1/todolist'; 
 $apiKey = $_ENV['SUPABASE_API_KEY'];

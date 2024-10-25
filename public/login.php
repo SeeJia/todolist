@@ -2,11 +2,11 @@
 
 require '../vendor/autoload.php';  // Autoload Composer dependencies
 
-use Dotenv\Dotenv;
+// use Dotenv\Dotenv;
 
-// Load the .env file
-$dotenv = Dotenv::createImmutable(__DIR__ . '/../');
-$dotenv->load();
+// // Load the .env file
+// $dotenv = Dotenv::createImmutable(__DIR__ . '/../');
+// $dotenv->load();
 
 session_start(); // 开始会话
 
