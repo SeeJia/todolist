@@ -14,10 +14,12 @@ $apiUrl = 'https://ibbhnrhodkqgzndymooe.supabase.co/rest/v1/todolist?select=*';
 $apiKey = $_ENV['SUPABASE_API_KEY'];
 $bearerToken = $_ENV['SUPABASE_BEARER_TOKEN'];
 
+if (isset($_SESSION['email'])) {
+    $email = $_SESSION['email'];
 // 初始化 cURL
 $ch = curl_init();
 // 设置 cURL 选项
-curl_setopt($ch, CURLOPT_URL, $apiUrl);
+curl_setopt($ch, CURLOPT_URL, $apiUrl . '&email=eq.' . $email);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_HTTPHEADER, [
     'apikey: ' . $apiKey,
@@ -33,6 +35,7 @@ curl_close($ch);
 
 $todos = json_decode($response, true);
 
+}
 ?>
 
 <!DOCTYPE html>
