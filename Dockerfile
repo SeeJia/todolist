@@ -13,11 +13,8 @@ RUN apt-get update && apt-get install -y \
 # 设置工作目录
 WORKDIR /var/www/html/
 
-# 复制 composer.json 和 composer.lock（如果存在）
-COPY composer.json composer.lock ./
-
 # 安装 Composer
-COPY --from=composer:2.8.1 /usr/bin/composer /usr/local/bin/composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 # 复制项目文件
 COPY . .
