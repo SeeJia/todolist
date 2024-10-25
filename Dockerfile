@@ -10,17 +10,16 @@ RUN apt-get update && apt-get install -y \
     git \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install gd \
-    && docker-php-ext-install pdo pdo_mysql \
-    && apt-get clean && rm -rf /var/lib/apt/lists/*
+    && docker-php-ext-install pdo pdo_mysql
 
 # 设置工作目录
 WORKDIR /var/www/html/
 
-# 复制项目文件
-COPY . .
-
 # 复制 .env 文件
 COPY .env ./
+
+# 复制项目文件
+COPY . .
 
 # 安装 Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
@@ -29,17 +28,15 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 RUN composer install --no-scripts --no-plugins
 
 # 设置 PHP 错误显示
-RUN echo "display_errors = On" > /usr/local/etc/php/conf.d/docker-php-errors.ini \
-    && echo "error_reporting = E_ALL" >> /usr/local/etc/php/conf.d/docker-php-errors.ini
+RUN echo "display_errors = On" >> /usr/local/etc/php/conf.d/docker-php-errors.ini
+RUN echo "error_reporting = E_ALL" >> /usr/local/etc/php/conf.d/docker-php-errors.ini
 
 # 设置文件夹权限（可选）
 RUN chown -R www-data:www-data /var/www/html
 
-# 暴露容器的 80 端口
+# 暴露容器的80端口
 EXPOSE 80
 
-# 启动 Apache
-CMD ["apache2-foreground"]
 
 
 
