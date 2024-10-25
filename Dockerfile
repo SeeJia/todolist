@@ -1,11 +1,13 @@
 # 使用官方 PHP 镜像
 FROM php:8.1-apache
 
-# 安装必要的 PHP 扩展
+# 安装必要的 PHP 扩展和工具
 RUN apt-get update && apt-get install -y \
     libpng-dev \
     libjpeg-dev \
     libfreetype6-dev \
+    zip \
+    git \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install gd \
     && docker-php-ext-install pdo pdo_mysql
@@ -31,5 +33,6 @@ RUN chown -R www-data:www-data /var/www/html
 
 # 暴露容器的80端口
 EXPOSE 80
+
 
 
