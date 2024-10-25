@@ -65,6 +65,8 @@ $todos = json_decode($response, true);
     <?php endif; ?>
 </div>
 
+
+<?php if (isset($_SESSION['email'])): ?>
 <?php include 'public/add_todo_form.php' ?>
 
 <div class="container mt-4">
@@ -119,6 +121,8 @@ $todos = json_decode($response, true);
 <?php endforeach; ?>
     </div>
 </div>
+
+<?php endif; ?>
 
 <script>
     function editTodo(id, event) {
