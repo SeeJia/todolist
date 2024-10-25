@@ -28,5 +28,3 @@ RUN chown -R www-data:www-data /var/www/html
 # 暴露容器的80端口
 EXPOSE 80
 
-RUN composer install
-
